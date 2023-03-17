@@ -1,9 +1,10 @@
 import React from 'react';
+import CardsWrapper from './../components/cardsWrapper';
 
 function MainPage() {
   return (
     <main>
-      <h1>Main</h1>
+      <CardsWrapper />
     </main>
   );
 }
