@@ -11,10 +11,6 @@ class SearchBar extends React.Component<{ text?: string }, { value: string }> {
     localStorage.setItem('searchBarValue', this.state.value);
   };
 
-  componentDidUpdate = () => {
-    localStorage.setItem('searchBarValue', this.state.value);
-  };
-
   handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     this.setState({ value: event.target.value });
   };
