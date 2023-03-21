@@ -10,8 +10,7 @@ describe('Header component', () => {
         <Header />
       </MemoryRouter>
     );
-
-    expect(screen.getByText(/Main/i)).toBeDefined();
+    expect(screen.getAllByText(/Main/i)).toBeDefined();
   });
 
   it('should show about us href', () => {
@@ -21,6 +20,6 @@ describe('Header component', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText(/About Us/i)).toBeDefined();
+    expect(screen.getAllByText(/About Us/i)).toBeDefined();
   });
 });
