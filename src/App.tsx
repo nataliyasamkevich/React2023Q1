@@ -4,6 +4,7 @@ import './App.css';
 
 import MainPage from './pages/MainPage';
 import AboutUsPage from './pages/AboutUsPage';
+import FormPage from './pages/FormPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/header';
 
@@ -15,6 +16,7 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/about" element={<AboutUsPage />}></Route>
+          <Route path="/form" element={<FormPage />}></Route>
           <Route path="/404" element={<NotFoundPage />}></Route>
           <Route path="*" element={<Navigate to="/404" />}></Route>
         </Routes>

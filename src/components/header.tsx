@@ -9,7 +9,18 @@ export class Header extends React.Component<Record<string, never>, IHeaderState>
   constructor(props: Record<string, never>) {
     super(props);
 
-    const name: string = window.location.pathname === '/' ? 'Main' : 'About Us';
+    let name = '';
+    switch (window.location.pathname) {
+      case '/':
+        name = 'Main';
+        break;
+      case '/about':
+        name = 'About Us';
+        break;
+      case '/form':
+        name = 'Form';
+        break;
+    }
 
     this.state = {
       namePage: name,
@@ -24,7 +35,7 @@ export class Header extends React.Component<Record<string, never>, IHeaderState>
     return (
       <header className="header">
         <nav className="header__navigation">
-          <h2 className="current-page">Current Page: {this.state.namePage}</h2>
+          <h2 className="current-page">{this.state.namePage}</h2>
           <ul className="navigation__list">
             <li className="navigation__item">
               <NavLink
@@ -42,6 +53,15 @@ export class Header extends React.Component<Record<string, never>, IHeaderState>
                 onClick={() => this.handleClick('About us')}
               >
                 About us
+              </NavLink>
+            </li>
+            <li className="navigation__item">
+              <NavLink
+                className="navigation__link"
+                to={'/form'}
+                onClick={() => this.handleClick('Form')}
+              >
+                Form
               </NavLink>
             </li>
           </ul>
