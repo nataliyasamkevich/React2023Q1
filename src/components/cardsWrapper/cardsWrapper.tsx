@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import itemsInfo from '../data/items';
-import Card from './card';
+import itemsInfo from './../../data/items';
+import Card from './../card/card';
 import './cardsWrapper.css';
 
 class CardsWrapper extends Component {

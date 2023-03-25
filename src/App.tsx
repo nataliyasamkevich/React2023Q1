@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 
-import MainPage from './pages/MainPage';
-import AboutUsPage from './pages/AboutUsPage';
-import FormPage from './pages/FormPage';
-import NotFoundPage from './pages/NotFoundPage';
-import Header from './components/header';
+import MainPage from './pages/MainPage/MainPage';
+import AboutUsPage from './pages/AboutUsPage/AboutUsPage';
+import FormPage from './pages/FormPage/FormPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import Header from './components/header/header';
 
 class App extends React.Component {
   render() {
