@@ -34,6 +34,7 @@ class FormPage extends React.Component<IFormPageProps, IFormPageState> {
   render() {
     return (
       <main>
+        <h2>Form</h2>
         <Form addFormCard={this.addFormCard} />
         <h2 hidden={this.state.isCardHidden}>Card added</h2>
         <div className="form-cards">
