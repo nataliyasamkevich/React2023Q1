@@ -8,21 +8,19 @@ import FormPage from './pages/FormPage/FormPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Header from './components/header/header';
 
-class App extends React.Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/about" element={<AboutUsPage />}></Route>
-          <Route path="/form" element={<FormPage />}></Route>
-          <Route path="/404" element={<NotFoundPage />}></Route>
-          <Route path="*" element={<Navigate to="/404" />}></Route>
-        </Routes>
-      </BrowserRouter>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/about" element={<AboutUsPage />}></Route>
+        <Route path="/form" element={<FormPage />}></Route>
+        <Route path="/404" element={<NotFoundPage />}></Route>
+        <Route path="*" element={<Navigate to="/404" />}></Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
