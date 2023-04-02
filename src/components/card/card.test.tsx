@@ -6,7 +6,7 @@ import itemsInfo from './../../data/items';
 describe('Card component', () => {
   it('renders component', () => {
     const { brand, name, volume, price, thumbnail } = itemsInfo[0];
-    render(<Card brand={brand} name={name} volume={volume} price={price} thumbnail={thumbnail} />);
+    render(<Card product={itemsInfo[0]} />);
 
     const img = screen.getByAltText(new RegExp(brand, 'i')) as HTMLImageElement;
     expect(img.src).toBe(thumbnail);
