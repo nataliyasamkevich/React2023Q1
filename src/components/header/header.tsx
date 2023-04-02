@@ -1,74 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.css';
 
-interface IHeaderState {
-  namePage: string;
-}
-export class Header extends React.Component<Record<string, never>, IHeaderState> {
-  constructor(props: Record<string, never>) {
-    super(props);
+function Header() {
+  const [namePage, setNamePage] = useState('');
 
-    let name = '';
+  useEffect(() => {
     switch (window.location.pathname) {
       case '/':
-        name = 'Main';
+        setNamePage('Main');
         break;
       case '/about':
-        name = 'About Us';
+        setNamePage('About Us');
         break;
       case '/form':
-        name = 'Form';
+        setNamePage('Form');
         break;
     }
+  }, []);
 
-    this.state = {
-      namePage: name,
-    };
-  }
+  const handleClick = (name: string) => {
+    setNamePage(name);
+  };
 
-  handleClick(name: string) {
-    this.setState({ namePage: name });
-  }
-
-  render() {
-    return (
-      <header className="header">
-        <nav className="header__navigation">
-          <h2 className="current-page">{this.state.namePage}</h2>
-          <ul className="navigation__list">
-            <li className="navigation__item">
-              <NavLink
-                className="navigation__link"
-                to={'/'}
-                onClick={() => this.handleClick('Main')}
-              >
-                Main
-              </NavLink>
-            </li>
-            <li className="navigation__item">
-              <NavLink
-                className="navigation__link"
-                to={'/about'}
-                onClick={() => this.handleClick('About us')}
-              >
-                About us
-              </NavLink>
-            </li>
-            <li className="navigation__item">
-              <NavLink
-                className="navigation__link"
-                to={'/form'}
-                onClick={() => this.handleClick('Form')}
-              >
-                Form
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    );
-  }
+  return (
+    <header className="header">
+      <nav className="header__navigation">
+        <h2 className="current-page">{namePage}</h2>
+        <ul className="navigation__list">
+          <li className="navigation__item">
+            <NavLink className="navigation__link" to={'/'} onClick={() => handleClick('Main')}>
+              Main
+            </NavLink>
+          </li>
+          <li className="navigation__item">
+            <NavLink
+              className="navigation__link"
+              to={'/about'}
+              onClick={() => handleClick('About us')}
+            >
+              About us
+            </NavLink>
+          </li>
+          <li className="navigation__item">
+            <NavLink className="navigation__link" to={'/form'} onClick={() => handleClick('Form')}>
+              Form
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
 }
 
 export default Header;
