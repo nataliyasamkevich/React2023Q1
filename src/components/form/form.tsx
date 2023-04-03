@@ -35,7 +35,7 @@ function Form({ addFormCard }: IFormProps) {
       surname: inputData.surname,
       date: inputData.date,
       country: inputData.country,
-      gender: inputData.country,
+      gender: inputData.gender,
       photo: URL.createObjectURL(inputData.photo[0]),
       consent: inputData.consent,
     });
