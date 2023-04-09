@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './searchBar.css';
 
-function SearchBar() {
+type ISearchBarProps = {
+  setInputValue: (text: string) => void;
+};
+
+function SearchBar({ setInputValue }: ISearchBarProps) {
   const [searchBarValue, setSearchBarValue] = useState(
     localStorage.getItem('searchBarValue') ?? ''
   );
+
   const searchRef = useRef('');
 
   useEffect(() => {
@@ -19,6 +24,7 @@ function SearchBar() {
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchBarValue(event.target.value);
+    localStorage.setItem('searchBarValue', event.target.value || '');
   };
 
   const handleClearClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -28,6 +34,8 @@ function SearchBar() {
 
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    localStorage.setItem('searchBarValue', searchBarValue || '');
+    setInputValue(searchBarValue);
   };
 
   return (

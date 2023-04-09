@@ -1,27 +1,16 @@
 import React from 'react';
-import { IProduct } from 'data/items';
+import { ICard } from '../../types/interfaces';
 import './card.css';
 
-interface IProductProps {
-  product: IProduct;
+export interface ICardProps {
+  card: ICard;
 }
 
-function Card({ product }: IProductProps) {
+function Card({ card }: ICardProps) {
   return (
     <div className="card">
-      <img className="card__image" src={product.thumbnail} alt={product.brand} />
-      <div className="card__info">
-        <div className="card__title">
-          <div className="card__brand">{product.brand}</div>
-          <div className="card__name">{product.name}</div>
-        </div>
-        <div className="card__options">
-          <div className="card__details">
-            <div className="card__volume">{product.volume} ml</div>
-            <div className="card__price">{product.price} €</div>
-          </div>
-        </div>
-      </div>
+      <img className="card__image" src={card.urls.regular} alt={card.description} />
+      <h3 className="card__title">{card.user.name ?? 'No title'}</h3>
     </div>
   );
 }
