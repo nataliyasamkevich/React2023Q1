@@ -1,0 +1,23 @@
+.form-card {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  margin: 30px 0;
+}
+
+.form-card img {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.form-card p {
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #000000;
+  margin: 7px 0;
+}
