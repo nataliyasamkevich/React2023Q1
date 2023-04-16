@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import './form.css';
-import { IFormCard } from '../../types/interfaces';
 import { useForm } from 'react-hook-form';
-import { FieldValues } from 'react-hook-form/dist/types';
+import { useAppDispatch } from '../../hooks/redux';
+import { setFormCard } from '../../store/formSlice';
+import './form.css';
 
-interface IFormProps {
-  addFormCard: (key: IFormCard) => void;
-}
-
-function Form({ addFormCard }: IFormProps) {
+function Form() {
   const [statusValid, setStatusValid] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -17,33 +15,28 @@ function Form({ addFormCard }: IFormProps) {
     handleSubmit,
     reset,
   } = useForm({
-    defaultValues: {
-      name: '',
-      surname: '',
-      date: '',
-      country: '',
-      gender: '',
-      photo: '',
-      consent: false,
-    },
+    reValidateMode: 'onSubmit',
   });
 
-  const handleClickSubmitButton = (inputData: FieldValues) => {
+  const handleClickSubmitButton = handleSubmit((data) => {
     setStatusValid(true);
-    addFormCard({
-      name: inputData.name,
-      surname: inputData.surname,
-      date: inputData.date,
-      country: inputData.country,
-      gender: inputData.gender,
-      photo: URL.createObjectURL(inputData.photo[0]),
-      consent: inputData.consent,
-    });
+    dispatch(
+      setFormCard({
+        id: Date.now(),
+        name: data.name,
+        surname: data.surname,
+        date: data.date,
+        country: data.country,
+        gender: data.gender,
+        photo: URL.createObjectURL(data.photo[0]),
+        consent: data.consent,
+      })
+    );
     reset();
     setTimeout(() => {
       setStatusValid(false);
     }, 10000);
-  };
+  });
 
   const validateDate = (value: string) => {
     const inputDate = new Date(value);
@@ -53,7 +46,7 @@ function Form({ addFormCard }: IFormProps) {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit(handleClickSubmitButton)}>
+    <form className="form" onSubmit={handleClickSubmitButton}>
       <div className="form-group__item">
         <label htmlFor="nameInput" className="form-group__label">
           Name
@@ -71,7 +64,7 @@ function Form({ addFormCard }: IFormProps) {
             minLength: { value: 2, message: 'Name must be greater than 1 letter' },
           })}
         />
-        {errors.name && <p className="error-message">{errors.name.message}</p>}
+        {errors.name && <p className="error-message">Please enter your name</p>}
       </div>
 
       <div className="form-group__item">
@@ -91,7 +84,7 @@ function Form({ addFormCard }: IFormProps) {
             minLength: { value: 2, message: 'Surname must be greater than 1 letter' },
           })}
         />
-        {errors.surname && <p className="error-message">{errors.surname.message}</p>}
+        {errors.surname && <p className="error-message">Please enter your surname</p>}
       </div>
 
       <div className="form-group__item">
@@ -109,7 +102,7 @@ function Form({ addFormCard }: IFormProps) {
             },
           })}
         />
-        {errors.date && <p className="error-message">{errors.date.message}</p>}
+        {errors.date && <p className="error-message">Please enter date of birth</p>}
       </div>
 
       <div className="form-group__item">

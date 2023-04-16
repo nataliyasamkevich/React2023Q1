@@ -1,21 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './searchBar.css';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setQuery } from '../../store/searchBarSlice';
+
 function SearchBar() {
-  const [searchBarValue, setSearchBarValue] = useState(
-    localStorage.getItem('searchBarValue') ?? ''
-  );
-  const searchRef = useRef('');
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchBarValue', searchRef.current || '');
-    };
-  }, []);
-
-  useEffect(() => {
-    searchRef.current = searchBarValue;
-  }, [searchBarValue]);
+  const dispatch = useAppDispatch();
+  const query = useAppSelector((state) => state.search.query);
+  const [searchBarValue, setSearchBarValue] = useState(query);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchBarValue(event.target.value);
@@ -28,6 +20,7 @@ function SearchBar() {
 
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    dispatch(setQuery(searchBarValue));
   };
 
   return (

@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './FormPage.css';
 import { IFormCard } from '../../types/interfaces';
 import Form from '../../components/form/form';
 import FormCard from '../../components/formCard/formCard';
+import { useAppSelector } from '../../hooks/redux';
 
 function FormPage() {
-  const [products, setProducts] = useState<IFormCard[]>([]);
-
-  const onChangeProduct = (newProduct: IFormCard) => {
-    setProducts([...products, newProduct]);
-  };
+  const { cards } = useAppSelector((state) => state.form);
 
   return (
     <main>
       <h2>Form</h2>
-      <Form addFormCard={onChangeProduct} />
+      <Form />
       <div className="form-cards">
-        {products.map((card: IFormCard, index) => {
-          return <FormCard form={card} key={index} />;
+        {cards.map((card: IFormCard) => {
+          return <FormCard form={card} key={card.id} />;
         })}
       </div>
     </main>
