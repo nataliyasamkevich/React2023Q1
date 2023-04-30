@@ -1,0 +1,25 @@
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import './App.css';
+import MainPage from './pages/MainPage/MainPage';
+import AboutUsPage from './pages/AboutUsPage/AboutUsPage';
+import FormPage from './pages/FormPage/FormPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import Header from './components/header/header';
+
+function App() {
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/about" element={<AboutUsPage />}></Route>
+        <Route path="/form" element={<FormPage />}></Route>
+        <Route path="/404" element={<NotFoundPage />}></Route>
+        <Route path="*" element={<Navigate to="/404" />}></Route>
+      </Routes>
+    </>
+  );
+}
+
+export default App;

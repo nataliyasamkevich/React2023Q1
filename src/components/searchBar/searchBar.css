@@ -1,0 +1,60 @@
+.search {
+  position: relative;
+  max-width: 340px;
+  margin: 0 auto 100px;
+}
+
+.search::after {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 1px;
+  bottom: 10px;
+  left: 30px;
+  background: #bebebe;
+  z-index: 1;
+}
+
+.input {
+  display: flex;
+  outline: none;
+  font: 400 20px/24px 'PP Radio Grotesk', sans-serif;
+  border: 1px solid #232323;
+}
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+.search__input {
+  width: 100%;
+  padding: 10px 60px 10px 30px;
+}
+
+.button {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.clear-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: url(./../../assets/clear.svg) no-repeat center;
+}
+
+.search-button {
+  position: absolute;
+  top: 10px;
+  right: 42px;
+  width: 30px;
+  height: 30px;
+  background: url(./../../assets/search.svg) no-repeat center;
+}
