@@ -6,6 +6,7 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       reporter: ['text', 'json', 'html'],
+      provider: 'istanbul',
       reportsDirectory: './coverage',
     },
   },
